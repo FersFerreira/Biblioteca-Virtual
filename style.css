@@ -1,0 +1,408 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap'); /* Importa a fonte Quicksand do Google Fonts */
+
+* {
+    box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho total do elemento */
+}
+
+:root {
+    --primary-color: #a78bfa; /* Cor primária (roxinho) */
+    --secondary-color: #e8eaed; /* Cor secundária (cinza claro) */
+    --tertiary-color: #9aa0a6; /* Cor terciária (cinza médio) */
+    --bg-color: #202124; /* Cor de fundo (cinza escuro) */
+}
+
+body {
+    margin: 0; /* Remove a margem padrão do body */
+    background: var(--bg-color); /* Define a cor de fundo usando uma variável */
+    color: var(--secondary-color); /* Define a cor do texto padrão usando uma variável */
+    font-family: "Quicksand", sans-serif; /* Define a família da fonte */
+    display: flex; /* Ativa o layout flexbox */
+    flex-direction: column; /* Organiza os filhos (header, main, footer) em coluna */
+    min-height: 100vh; /* Garante que o body ocupe no mínimo a altura total da tela */
+}
+
+header {
+    padding: 2rem 0 1rem 0; /* Aumenta o espaçamento superior */
+    position: sticky; /* Mantém o cabeçalho fixo no topo ao rolar a página */
+    top: 0; /* Posição do topo quando sticky */
+    background: var(--bg-color); /* Cor de fundo do cabeçalho */
+    z-index: 10; /* Define a ordem de empilhamento para ficar sobre outros elementos */
+    border-bottom: 1px solid var(--bg-color); /* Adiciona uma borda inferior */
+}
+
+.header-content {
+    max-width: 80rem; /* Mesma largura máxima do main */
+    margin: 0 auto; /* Centraliza o container */
+    padding: 0 1rem; /* Espaçamento lateral para não colar nas bordas da tela */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem; /* Espaçamento entre os elementos flex */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Espaço entre o ícone e o texto */
+}
+
+.logo-icon {
+    width: 24px; /* Tamanho do ícone */
+    height: 24px;
+}
+
+header h1 {
+    font-size: 1.5rem; /* Tamanho da fonte */
+    margin: 0; /* Remove a margem padrão */
+    font-weight: 500; /* Peso da fonte (médio) */
+    white-space: nowrap; /* Impede a quebra de linha do texto em telas maiores */
+}
+
+div input {
+    padding: 0.6rem 1rem; /* Espaçamento interno (aumentado para mais altura) */
+    border-radius: 1rem; /* Arredonda as bordas */
+    border: 1px solid var(--tertiary-color); /* Define a borda */
+    background: var(--bg-color); /* Cor de fundo */
+    font-family: inherit; /* Herda a família da fonte do elemento pai */
+    font-size: 1.5rem; /* Tamanho da fonte */
+    transition: all 0.2s ease; /* Adiciona uma transição suave para todas as propriedades */
+    width: 100%; /* Largura do input para preencher o search-box */
+    color: var(--secondary-color); /* Cor do texto digitado */
+}
+
+.search-input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza o input e o botão */
+    flex-grow: 1; /* Faz a barra de busca crescer */
+    margin: 0 2rem; /* Adiciona margens laterais para não colar no logo/botão */
+}
+
+div input::placeholder {
+    font-size: 1.2rem; /* Tamanho da fonte do placeholder */
+    font-weight: 300; /* Peso da fonte do placeholder */
+    color: var(--tertiary-color); /* Cor do texto do placeholder */
+}
+
+div input:focus {
+    outline: none; /* Remove a borda de foco padrão */
+    border-color: var(--bg-color); /* Muda a cor da borda ao focar */
+    box-shadow: 0 0 0 0.1rem var(--tertiary-color); /* Adiciona uma sombra de caixa para indicar foco */
+}
+
+#botao-busca,
+#botao-favoritos {
+    padding: 1rem 2rem; /* Espaçamento interno */
+    border-radius: 1rem; /* Arredonda as bordas */
+    border: none; /* Remove a borda padrão */
+    cursor: pointer; /* Muda o cursor para uma mão ao passar por cima */
+    font-family: inherit; /* Herda a família da fonte */
+    font-weight: 500; /* Peso da fonte */
+    font-size: 1rem; /* Tamanho da fonte */
+    white-space: nowrap; /* Impede a quebra de linha do texto */
+    transition: background-color 0.2s ease, color 0.2s ease; /* Transição suave para cor de fundo e cor do texto */
+    background-color: var(--bg-color); /* Cor de fundo */
+    color: var(--secondary-color); /* Cor do texto */
+    border: 1px solid var(--bg-color); /* Adiciona uma borda */
+}
+
+#botao-busca { 
+    margin-left: 0.5rem; 
+}
+
+#botao-favoritos {
+    margin-left: 0.75rem; /* Adiciona um espaço para afastá-lo do botão de busca */
+}
+#botao-busca:hover,
+#botao-favoritos:hover {
+    background-color: var(--primary-color); /* Muda a cor de fundo ao passar o mouse */
+    color: var(--bg-color); /* Muda a cor do texto ao passar o mouse */
+    box-shadow: 0 0 0 0.1rem var(--primary-color); /* Adiciona uma sombra de caixa */
+}
+
+#botao-busca:active,
+#botao-favoritos:active {
+    transform: scale(0.98); /* Efeito de clique (diminui o tamanho) */
+}
+
+main {
+    flex-grow: 1; /* Faz o conteúdo principal crescer para ocupar o espaço disponível */
+    /* A propriedade overflow-y foi removida para usar a rolagem padrão do navegador */
+    max-width: 80rem; /* Largura máxima do conteúdo principal */
+    margin: 0 auto; /* Centraliza o conteúdo principal horizontalmente */
+    margin-top: 2rem; /* Margem no topo (reduzida) */
+    padding-bottom: 5rem; /* Adiciona espaço no final para não ser coberto pelo rodapé */
+}
+
+/* --- Estilos para o Container dos Cards --- */
+.card-container {
+    display: flex; /* Muda para flexbox */
+    flex-direction: column; /* Organiza os itens em uma coluna */
+    gap: 1.5rem; /* Espaçamento entre os cards */
+}
+
+/* --- Estilos para os Filtros de Gênero --- */
+.secao-generos {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os botões quebrem para a próxima linha */
+    justify-content: center; /* Centraliza o grupo de botões */
+    gap: 0.75rem; /* Espaçamento entre os botões */
+    padding: 0 1rem 1.5rem 1rem; /* Espaçamento interno (inferior é maior) */
+    border-bottom: 1px solid #3c4043; /* Linha separadora */
+    margin-bottom: 2rem; /* Espaço antes da lista de livros */
+}
+
+/* No desktop, as linhas de gênero se comportam como um container único */
+.generos-linha {
+    display: contents; /* Faz o container da linha "desaparecer" para o layout, 
+                          promovendo os botões a filhos diretos do flex container pai */
+}
+
+/* Esconde a barra de rolagem no container de gêneros em navegadores WebKit (Chrome, Safari) */
+.secao-generos::-webkit-scrollbar,
+.generos-container::-webkit-scrollbar { /* Mantém a regra antiga por segurança */
+    display: none;
+}
+
+/* Esconde a barra de rolagem para Firefox */
+.generos-container {
+    scrollbar-width: none;
+}
+
+.botao-genero {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--tertiary-color);
+    background-color: transparent;
+    color: var(--tertiary-color);
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    flex-shrink: 0; /* Impede que os botões encolham */
+}
+
+.botao-genero {
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    border: 1px solid var(--tertiary-color);
+    background-color: transparent;
+    color: var(--tertiary-color);
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.botao-genero:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    border-color: var(--primary-color);
+    transform: translateY(-3px); /* Efeito de elevação */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+.botao-genero.ativo {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    border-color: var(--primary-color);
+}
+
+/* Estilos para a barra de rolagem (Navegadores baseados em WebKit) */
+::-webkit-scrollbar {
+    width: 12px; /* Largura da barra de rolagem */
+}
+
+::-webkit-scrollbar-track {
+    background: #292a2d; /* Cor de fundo da trilha, um pouco mais clara que o fundo principal */
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--tertiary-color); /* Cor da barra de rolagem */
+    border-radius: 10px; /* Bordas arredondadas */
+    border: 3px solid #292a2d; /* Cria um espaçamento ao redor da barra */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary-color); /* Cor da barra ao passar o mouse */
+}
+
+article {
+    background: none; /* Sem cor de fundo */
+    border-radius: 0; /* Sem bordas arredondadas */
+    padding: 0; /* Remove o padding */
+    padding: 0 1rem; /* Espaçamento interno nos lados */
+    margin-bottom: 1.25rem; /* Margem inferior */
+    box-shadow: none; /* Sem sombra */
+    transition: background-color 0.3s ease, border-bottom-color 0.3s ease; /* Transição suave */
+    border-bottom: 1px solid var(--bg-color); /* Borda inferior */
+    padding-bottom: 1.5rem; /* Espaçamento interno inferior */
+}
+
+article:hover {
+    transform: scale(1.01); /* Aumenta ligeiramente o tamanho ao passar o mouse */
+    cursor: pointer; /* Muda o cursor para uma mão */
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.botao-favorito {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--tertiary-color);
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.botao-favorito:hover {
+    transform: scale(1.2);
+}
+
+.botao-favorito.favoritado {
+    color: #e04f4f; /* Cor vermelha para o coração favoritado */
+}
+
+.card-header h2 {
+    margin-top: 0; /* Remove a margem superior */
+    font-weight: 600; /* Peso da fonte */
+    font-size: 1.6rem; /* Tamanho da fonte */
+    border-bottom: none; /* Sem borda inferior */
+    padding-bottom: 0; /* Sem espaçamento interno inferior */
+    margin-bottom: 0.25rem; /* Margem inferior */
+    color: var(--primary-color); /* Cor do texto */
+}
+
+.card-header h2 {
+    display: flex; /* Alinha o texto e o ícone na mesma linha */
+    align-items: center; /* Centraliza verticalmente */
+    gap: 0.5rem; /* Adiciona um pequeno espaço entre o texto e a bandeira */
+    flex-wrap: wrap; /* Permite que o título quebre a linha se for muito longo */
+}
+
+article p {
+    margin: 0.5rem 0; /* Margem superior e inferior */
+    line-height: 1.6; /* Altura da linha para melhor legibilidade */
+    font-size: 1rem; /* Tamanho da fonte */
+    margin-bottom: 0.5rem; /* Margem inferior */
+    color: var(--secondary-color); /* Cor do texto */
+}
+
+article p strong {
+    color: var(--tertiary-color); /* Cor do texto em negrito */
+    font-weight: 400; /* Peso da fonte */
+}
+
+article a {
+    color: var(--primary-color); /* Cor do link */
+    text-decoration: none; /* Remove o sublinhado padrão */
+    font-weight: 500; /* Peso da fonte */
+    display: inline-block; /* Necessário para aplicar a transformação */
+    transition: transform 0.2s ease, filter 0.2s ease; /* Transição suave */
+}
+
+article a:hover {
+    text-decoration: underline; /* Adiciona sublinhado ao passar o mouse */
+    transform: translateY(-2px); /* Move o link 2px para cima */
+        filter: brightness(1.1); /* Aumenta o brilho em 10% */ 
+}
+ 
+.footer {
+    /* Remove o posicionamento absoluto para que o footer siga o fluxo normal da página */
+    bottom: 0; /* Alinha na parte inferior */
+    left: 0; /* Alinha à esquerda */
+    width: 100%; /* Largura total */
+    background-color: var(--bg-color); /* Cor de fundo */
+    padding: 2rem 0; /* Aumenta o espaçamento vertical para deixar o rodapé mais alto */
+    border-top: 1px solid #3c4043; /* Borda superior */
+    font-size: 0.8rem; /* Tamanho da fonte */
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo (a lista de links) */
+    align-items: center; /* Alinha os itens verticalmente */
+}
+ 
+.footer-links {
+    list-style: none; /* Remove os marcadores da lista */
+    display: flex; /* Habilita o layout flexbox */
+    gap: 15px; /* Espaçamento entre os links */
+    margin: 0; /* Remove margens padrão da lista */
+    padding: 0; /* Remove padding padrão da lista */
+}
+ 
+.footer-links a {
+    color: var(--secondary-color); /* Cor do link */
+    text-decoration: none; /* Remove o sublinhado */
+    display: inline-block; /* Necessário para aplicar a transformação */
+    transition: color 0.2s ease, transform 0.2s ease; /* Transição suave */
+}
+
+.footer-links a:hover {
+    color: var(--primary-color); /* Muda a cor do link para o roxo principal */
+    transform: translateY(-2px); /* Move o link 2px para cima */
+}
+
+/* --- Estilos da Seção de Recomendação --- */
+
+.recomendacao-container {
+    text-align: center; /* Centraliza o texto e os elementos internos */
+    padding: 2rem 1rem; /* Espaçamento interno */
+    margin-top: 2rem; /* Espaço acima da seção */
+    margin-bottom: 6rem; /* Adiciona espaço abaixo para não ser coberto pelo rodapé */
+}
+
+.recomendacao-container h3 {
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.recomendacao-container .input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem; /* Espaço entre o input e o botão */
+}
+/* Estiliza o input da recomendação para ser igual ao da busca */
+#recomendacao-livro {
+    padding: 0.375rem 0.75rem;
+    border-radius: 1rem;
+    border: 1px solid var(--tertiary-color);
+    background: var(--bg-color);
+    font-family: inherit;
+    font-size: 1rem; /* Diminuído para melhor encaixe em telas menores */
+    transition: all 0.2s ease;
+    width: 25rem; /* Largura do input */
+    color: var(--secondary-color);
+}
+
+/* Aplica os mesmos estilos do #botao-busca ao #botao-enviar-recomendacao */
+#botao-enviar-recomendacao {
+    padding: 0.75rem 1.5rem; /* Ajuste de padding para alinhar melhor com o input */
+    border-radius: 1rem;
+    border: 1px solid var(--bg-color);
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 500;
+    font-size: 1rem;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    background-color: var(--bg-color);
+    color: var(--secondary-color);
+}
+
+#botao-enviar-recomendacao:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 0 0.1rem var(--primary-color);
+}
+
+#botao-enviar-recomendacao:active {
+    transform: scale(0.98);
+}

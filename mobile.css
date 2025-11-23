@@ -1,0 +1,185 @@
+/* --- Estilos Globais para Mobile --- */
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden; /* Impede a rolagem horizontal em toda a página */
+}
+
+/* --- Media Queries para Responsividade --- */
+
+/* Telas de Tablet e Celular (até 768px) */
+@media (max-width: 768px) {
+    header {
+        /* A propriedade 'position: sticky' é herdada do style.css, mantendo o cabeçalho fixo */
+        padding: 0.75rem 1rem; /* Deixa o cabeçalho mais compacto */
+        background-color: var(--bg-color); /* Garante um fundo sólido quando o conteúdo rola por baixo */
+        border-bottom: 1px solid #3c4043; /* Adiciona uma linha de separação */
+    }
+
+    .header-content {
+        flex-direction: column; /* Organiza os itens do cabeçalho em coluna */
+        gap: 1rem; /* Espaçamento entre os itens empilhados */
+    }
+
+    header h1 {
+        white-space: normal; /* Permite que o título quebre a linha se necessário */
+    }
+
+    .search-input-group {
+        width: 100%; /* Faz a barra de busca ocupar toda a largura */
+        display: flex; /* Alinha os itens lado a lado */
+        gap: 0.5rem; /* Adiciona um pequeno espaço entre os itens */
+        margin: 0; /* Remove margens laterais */
+    }
+
+    /* Reduz o tamanho do input e dos botões no cabeçalho para telas menores */
+    #busca {
+        font-size: 1rem; /* Mínimo de 16px (1rem) para evitar zoom automático no iOS */
+        padding: 0.6rem 0.8rem;
+        flex-grow: 1; /* Faz o campo de busca ocupar o espaço disponível */
+    }
+
+    #botao-busca,
+    #botao-favoritos {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.8rem; /* Reduz ainda mais o padding para diminuir a altura */
+        flex-shrink: 0; /* Impede que os botões encolham */
+    }
+
+
+    /* --- Efeito de Flash para Botões no Mobile --- */
+    /* 
+     * Em dispositivos com capacidade de hover (como um mouse), não fazemos nada.
+     * Em dispositivos de toque (hover: none), desativamos o efeito de hover do desktop.
+     * Isso impede que o botão fique "preso" em um estado indesejado após o toque.
+    */
+    @media (hover: none) {
+        #botao-busca:hover,
+        #botao-favoritos:hover {
+            background-color: transparent; /* Remove qualquer efeito de fundo do hover */
+            color: var(--secondary-color); /* Garante que a cor do texto não mude */
+            box-shadow: none; /* Remove a sombra do hover */
+        }
+    }
+
+    /* Garante que o estado de foco não altere a aparência do botão */
+    #botao-busca:focus, #botao-favoritos:focus {
+        outline: none; /* Apenas remove a borda de foco padrão */
+    }
+
+    /* Aplica o "flash" roxo SOMENTE durante o clique/toque */
+    #botao-busca:active, #botao-favoritos:active {
+        background-color: var(--primary-color); /* Roxo, como solicitado */
+        color: var(--bg-color); /* Garante que o texto seja legível no fundo roxo */
+        transform: scale(0.98);
+    }
+
+    /* O container .botoes-header não é mais necessário para o layout mobile */
+
+
+    .secao-generos {
+        padding: 0 0.5rem 1.5rem 0.5rem; /* Diminui o espaçamento lateral para caber mais botões */
+    }
+
+    .generos-linha {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem; /* Diminui o espaço entre os botões */
+        margin-bottom: 0.5rem; /* Espaço entre as linhas */
+    }
+
+    /* Deixa os botões de gênero menores para caberem mais na linha */
+    .botao-genero {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+
+    main {
+        padding: 0 1rem; /* Adiciona padding lateral */
+        /* A largura é controlada pelo body, o main se ajusta automaticamente */
+    }
+
+    article:hover {
+        transform: none; /* Remove o efeito de escala ao passar o mouse */
+    }
+
+    /* Garante que TODO o texto dentro dos cards quebre a linha e não cause overflow */
+    article, article * {
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+
+    /* Garante que o parágrafo da descrição não cause overflow */
+    .card-body p {
+        overflow-wrap: break-word;
+    }
+    
+    /* Garante que o cabeçalho do card se ajuste em telas pequenas */
+    .card-header {
+        flex-wrap: wrap; /* Permite que o botão de favorito quebre a linha se necessário */
+        gap: 0.5rem;
+    }
+
+    /* Garante que o título do livro não "empurre" o layout */
+    .card-header h2 {
+        flex-shrink: 1; /* Permite que o título encolha se necessário */
+        min-width: 0; /* Remove uma largura mínima implícita que pode causar overflow */
+    }
+    
+    /* Garante que o input de recomendação não cause overflow em tablets */
+    #recomendacao-livro {
+        width: 100%;
+    }
+
+    /* Ajusta o espaçamento dos cards no celular */
+    article {
+        padding: 0 0.5rem 1.5rem 0.5rem;
+    }
+}
+
+/* Telas de Celular (até 480px) */
+@media (max-width: 480px) {
+
+    header h1 {
+        font-size: 1.3rem; /* Diminui o título principal */
+    }
+
+    article h2 {
+        font-size: 1.4rem; /* Reduz o tamanho do título dos livros */
+    }
+
+    /* Ajusta o layout da seção de recomendação */
+    .recomendacao-container .input-container {
+        flex-direction: column; /* Empilha o campo e o botão */
+        gap: 1rem;
+    }
+
+    /* Garante que o input de recomendação não ultrapasse a largura da tela */
+    #recomendacao-livro {
+        width: 100%;
+    }
+}
+
+/* --- Estilos para o Botão "Voltar ao Topo" --- */
+#botao-topo {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 50%;
+    font-size: 18px;
+    width: 48px;
+    height: 48px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s, visibility 0.3s;
+    opacity: 0;
+    visibility: hidden;
+}
